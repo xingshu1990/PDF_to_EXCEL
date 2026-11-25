@@ -1,0 +1,10 @@
+# .bat 必须是 CRLF，否则 cmd 解析会出错
+*.bat text eol=crlf
+
+# 文本统一用 LF 提交
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf

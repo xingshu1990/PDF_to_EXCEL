@@ -1,0 +1,607 @@
+{
+  "id": "instrument_data_ball_valve_12col",
+  "name": "仪表数据表（开关球阀/切断阀）12-13列单阀版",
+  "valve_type": [
+    "球阀",
+    "切断阀"
+  ],
+  "detect": {
+    "must_any": [
+      "Tag No",
+      "位号",
+      "仪表数据表",
+      "切断阀规格书"
+    ],
+    "score_words": [
+      "Solid Mass Cont.",
+      "Critical Pressure",
+      "GENERAL",
+      "Piston",
+      "ACTUATOR TYPE",
+      "Filter过滤器",
+      "INSTRUMENT DATA",
+      "位号 TAG",
+      "Flow Coefficient",
+      "全通径球阀",
+      "PROCESS CONDITION",
+      "Air Failure Position"
+    ],
+    "min_score": 2
+  },
+  "struct": {
+    "ncols": [
+      12,
+      13
+    ],
+    "valves_per_page": 1,
+    "seq_col": 1
+  },
+  "parse": {
+    "parse_mode": "pdf_inline",
+    "valves_per_page": 1,
+    "col_map": {
+      "seq": 1,
+      "name": 2,
+      "name2": 4,
+      "val": 6,
+      "val2": 9,
+      "seq_r": 7,
+      "name_r": 8,
+      "val_r": 10,
+      "name_cont": [
+        49
+      ]
+    },
+    "footnote": {
+      "original_title": "备注原文",
+      "translated_title": "翻译备注",
+      "after": "Q",
+      "translate": true,
+      "min_len": 8,
+      "below_table": true
+    }
+  },
+  "fields": [
+    {
+      "seq": 1,
+      "to": "B",
+      "label": "位号",
+      "pat": "(?:Tag No\\. 位号)|(?:位号 TAG NO\\.)"
+    },
+    {
+      "seq": 2,
+      "to": "G",
+      "label": "用途",
+      "pat": "(?:Service 用途)|(?:用途 SERVICE)"
+    },
+    {
+      "seq": 3,
+      "to": "W",
+      "label": "管道号",
+      "pat": "Line No\\. 管道号"
+    },
+    {
+      "seq": 3,
+      "sub": 1,
+      "to": "R",
+      "label": "P&ID号",
+      "pat": "P&ID No\\. P&ID 图号"
+    },
+    {
+      "seq": 4,
+      "to": "Y",
+      "label": "管线尺寸",
+      "pat": "Line Size 管线尺寸"
+    },
+    {
+      "seq": 4,
+      "sub": 1,
+      "to": "AE",
+      "label": "管道等级",
+      "pat": "Pipe Class 管道等级"
+    },
+    {
+      "seq": 5,
+      "sub": 1,
+      "to": "Z",
+      "label": "管道壁厚等级",
+      "pat": "Pipe Sched 壁厚等级"
+    },
+    {
+      "seq": 6,
+      "sub": 1,
+      "to": "AA",
+      "label": "管道材质",
+      "pat": "Pipe Material 管道材质"
+    },
+    {
+      "seq": 8,
+      "to": "H",
+      "label": "介质",
+      "pat": "(?:Fluid 介质)|(?:介质 FLUID)"
+    },
+    {
+      "seq": 8,
+      "sub": 1,
+      "to": "S",
+      "label": "状态",
+      "pat": "(?:State 状态)|(?:状态 State)"
+    },
+    {
+      "seq": 9,
+      "to": "M",
+      "label": "设计压力→阀体设计压力",
+      "pat": "Design\\.Press\\. 设计压力"
+    },
+    {
+      "seq": 9,
+      "sub": 1,
+      "to": "I",
+      "label": "设计温度",
+      "pat": "(?:Design Temp\\. 设计温度)|(?:设计温度 Design Temp\\.℃)"
+    },
+    {
+      "seq": 11,
+      "to": "K",
+      "label": "最大关闭差压",
+      "pat": "(?:Max\\.Shut-Off DP 最大关闭差压)|(?:最大关闭差压 MAX\\.Shut-Off DP)"
+    },
+    {
+      "seq": 14,
+      "to": "L",
+      "label": "入口压力→阀前压力",
+      "unit_col": 6,
+      "pat": "Inlet Press\\. 入口压力"
+    },
+    {
+      "seq": 16,
+      "to": "J",
+      "label": "入口温度→阀前温度",
+      "pat": "Temperature 入口温度"
+    },
+    {
+      "seq": 26,
+      "to": "N",
+      "label": "本体类型",
+      "pat": "Body Type 本体类型"
+    },
+    {
+      "seq": 27,
+      "to": "D",
+      "label": "口径",
+      "pat": "Size尺寸 Body阀体/Trim阀芯"
+    },
+    {
+      "seq": 29,
+      "to": "AF",
+      "label": "连接尺寸&等级",
+      "pat": "End Conn\\. Size & Rat\\. 连接尺寸&等级"
+    },
+    {
+      "seq": 29,
+      "to": "C",
+      "label": "压力等级（从端部连接提取）",
+      "transform": "pressure_class",
+      "pat": "End Conn\\. Size & Rat\\. 连接尺寸&等级"
+    },
+    {
+      "seq": 30,
+      "to": "AL",
+      "label": "本体材质",
+      "pat": "Body Matl\\. 本体材质"
+    },
+    {
+      "seq": 32,
+      "to": "AL",
+      "label": "阀盖材质（并入阀体&阀盖）",
+      "merge": true,
+      "pat": "Bonnet Matl\\. 阀盖材质"
+    },
+    {
+      "seq": 35,
+      "to": "AG",
+      "label": "阀芯类型→结构形式",
+      "pat": "Trim Type 阀芯类型"
+    },
+    {
+      "seq": 36,
+      "to": "AM",
+      "label": "阀芯材质",
+      "pat": "Trim Matl\\. 阀芯材质"
+    },
+    {
+      "seq": 38,
+      "to": "AM",
+      "label": "阀座材质（并入内件&密封面）",
+      "merge": true,
+      "pat": "(?:Seat Material 阀座材质)|(?:阀座材质 Seat Material)"
+    },
+    {
+      "seq": 39,
+      "to": "AN",
+      "label": "阀杆材质",
+      "pat": "(?:Stem Material 阀杆材质)|(?:阀杆材质 Stem material)"
+    },
+    {
+      "seq": 40,
+      "to": "AP",
+      "label": "填料材质",
+      "pat": "(?:Packing Material 填料材质)|(?:填料材质 Packing Material)"
+    },
+    {
+      "seq": 41,
+      "to": "AV",
+      "label": "泄漏等级",
+      "pat": "(?:ANSI/FCI Leak\\. Class 泄漏等级)|(?:泄漏等级 ANSI/FCI Leak\\.Class)"
+    },
+    {
+      "seq": 44,
+      "to": "BK",
+      "label": "执行器类型",
+      "pat": "Acutator Type 执行器类型"
+    },
+    {
+      "seq": 45,
+      "to": "BM",
+      "label": "执行器尺寸",
+      "pat": "Actuator Size 执行器尺寸"
+    },
+    {
+      "seq": 46,
+      "to": "BO",
+      "label": "气源故障位置",
+      "transform": "failure_pos",
+      "pat": "Air Failure Posn\\. 气源故障位置"
+    },
+    {
+      "seq": 47,
+      "to": "BP",
+      "label": "手轮",
+      "pat": "Hand Wheel Location 手轮位置"
+    },
+    {
+      "seq": 61,
+      "to": "CB",
+      "label": "电磁阀形式",
+      "pat": "(?:Type 类型)|(?:类型Type)"
+    },
+    {
+      "seq": 61,
+      "sub": 1,
+      "to": "CK",
+      "label": "电磁阀数量",
+      "pat": "(?:Type 类型)|(?:类型Type)"
+    },
+    {
+      "seq": 63,
+      "to": "CA",
+      "label": "电磁阀防爆等级",
+      "pat": "Expln\\. Prf\\. 防爆等级"
+    },
+    {
+      "seq": 64,
+      "to": "CG",
+      "label": "电磁阀电源",
+      "pat": "(?:Power Supply 电源)|(?:电源 Power Supply)"
+    },
+    {
+      "seq": 66,
+      "to": "CH",
+      "label": "电磁阀电气接口",
+      "pat": "(?:Elec\\. Conn\\. 电气接口)|(?:电气接口 Elec\\.Conn\\.)"
+    },
+    {
+      "seq": 67,
+      "to": "CE",
+      "label": "失电阀位",
+      "pat": "When De-energize Valve: 电磁阀失电时阀门状态"
+    },
+    {
+      "seq": 69,
+      "to": "CY",
+      "label": "限位开关形式",
+      "pat": "Type 类型"
+    },
+    {
+      "seq": 69,
+      "sub": 1,
+      "to": "CW",
+      "label": "限位开关数量",
+      "pat": "(?:Type 类型)|(?:类型Type)"
+    },
+    {
+      "seq": 70,
+      "to": "DD",
+      "label": "接点容量",
+      "pat": "Contact Rat\\. 接点容量"
+    },
+    {
+      "seq": 71,
+      "to": "CX",
+      "label": "开关位置",
+      "pat": "(?:Switching Posn\\. 开关位置)|(?:开关位置 Switching Posn\\.)"
+    },
+    {
+      "seq": 72,
+      "to": "CT",
+      "label": "限位开关防爆等级",
+      "pat": "Expln\\. Proof 防爆等级"
+    },
+    {
+      "seq": 74,
+      "to": "DC",
+      "label": "限位开关电气接口",
+      "pat": "(?:Elec\\. Conn\\. 电气接口)|(?:电气接口 Elec\\.Conn\\.)"
+    },
+    {
+      "seq": 75,
+      "to": "BR",
+      "label": "供气压力",
+      "pat": "(?:Air Supp Press 供气压力)|(?:供气压力Air Supp Press)"
+    },
+    {
+      "seq": 76,
+      "to": "DE",
+      "label": "过滤减压阀",
+      "pat": "Filter过滤器/Gauge压力计"
+    },
+    {
+      "seq": 77,
+      "to": "DG",
+      "label": "气动接口",
+      "pat": "Pneu\\. Conn\\. 气动接口"
+    },
+    {
+      "seq": 78,
+      "to": "DK",
+      "label": "储气罐",
+      "pat": "(?:Volume Tank 储气罐)|(?:储气罐 Volume Tank)"
+    },
+    {
+      "seq": 1,
+      "sub": 1,
+      "to": "F",
+      "label": "数量",
+      "pat": "数量 QUANTITIES"
+    },
+    {
+      "seq": 3,
+      "to": "R",
+      "label": "P&ID号",
+      "pat": "工艺管号 Pipe NO\\."
+    },
+    {
+      "seq": 4,
+      "to": "Y",
+      "label": "管道尺寸",
+      "pat": "管道尺寸 Pipe Sise"
+    },
+    {
+      "seq": 4,
+      "sub": 1,
+      "to": "X",
+      "label": "管道等级",
+      "pat": "管道等级 Pipe Class"
+    },
+    {
+      "seq": 6,
+      "to": "AA",
+      "label": "管道材质",
+      "pat": "管道内径 PIPE I\\.D\\."
+    },
+    {
+      "seq": 7,
+      "to": "U",
+      "label": "危险区域等级",
+      "pat": "危险区域等级 Area Classification"
+    },
+    {
+      "seq": 9,
+      "to": "M",
+      "label": "设计压力→阀体设计压力",
+      "pat": "设计压力 Design\\.Press Mpa\\(G\\)"
+    },
+    {
+      "seq": 10,
+      "to": "L",
+      "label": "操作压力→阀前压力",
+      "pat": "操作压力 Oper Press Mpa\\(G\\)"
+    },
+    {
+      "seq": 10,
+      "sub": 1,
+      "to": "J",
+      "label": "操作温度→阀前温度",
+      "pat": "操作温度 Oper Temp\\.℃"
+    },
+    {
+      "seq": 26,
+      "to": "N",
+      "label": "阀门类型",
+      "pat": "阀门类型 Valve Type"
+    },
+    {
+      "seq": 27,
+      "to": "D",
+      "label": "口径",
+      "pat": "尺寸SIZE 阀门Body /阀芯Trim"
+    },
+    {
+      "seq": 29,
+      "to": "AF",
+      "label": "端部连接（连接尺寸&等级）",
+      "pat": "连接尺寸&等级 End Conn\\.Size&Rat"
+    },
+    {
+      "seq": 29,
+      "to": "C",
+      "label": "压力等级（从端部连接提取 CL/PN）",
+      "transform": "pressure_class",
+      "pat": "连接尺寸&等级 End Conn\\.Size&Rat"
+    },
+    {
+      "seq": 30,
+      "to": "AL",
+      "label": "本体材质",
+      "pat": "本体材质 Body Material"
+    },
+    {
+      "seq": 36,
+      "to": "AM",
+      "label": "阀芯材质",
+      "pat": "阀芯材质 Trim Material"
+    },
+    {
+      "seq": 44,
+      "to": "BK",
+      "label": "执行器类型",
+      "pat": "执行器类型 ACTUATOR TYPE"
+    },
+    {
+      "seq": 45,
+      "to": "BM",
+      "label": "执行器型号",
+      "pat": "执行器型号 ACTUATOR Model"
+    },
+    {
+      "seq": 46,
+      "to": "BO",
+      "label": "气源故障位置",
+      "pat": "气源故障位置 Air Failure Position"
+    },
+    {
+      "seq": 47,
+      "to": "BP",
+      "label": "手轮",
+      "pat": "手轮 Hand Wheel"
+    },
+    {
+      "seq": 49,
+      "to": "O",
+      "label": "动作时间",
+      "pat": "动作时间 Travel Time\\(sec\\)"
+    },
+    {
+      "seq": 60,
+      "to": "BY",
+      "label": "电磁阀型号",
+      "pat": "品牌/型号 Brand/Model No\\."
+    },
+    {
+      "seq": 68,
+      "to": "CR",
+      "label": "限位开关型号",
+      "pat": "品牌/型号 Brand/Model No\\."
+    },
+    {
+      "seq": 69,
+      "to": "CY",
+      "if_numeric": "CW",
+      "label": "限位开关形式（纯数字时改填数量）",
+      "pat": "类型Type"
+    },
+    {
+      "seq": 76,
+      "to": "DE",
+      "label": "过滤减压阀",
+      "pat": "过滤减压阀 Regulator"
+    },
+    {
+      "seq": 77,
+      "to": "DG",
+      "label": "气动接口",
+      "pat": "接口尺寸Pneu\\.Conn\\."
+    }
+  ],
+  "remark": {
+    "to": "Q",
+    "include_seqs": [
+      11,
+      13,
+      17,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25,
+      28,
+      31,
+      37,
+      63,
+      64,
+      69
+    ],
+    "labels": {
+      "11": "固体含量/闪蒸率",
+      "13": "流量",
+      "17": "密度",
+      "19": "粘度",
+      "21": "饱和蒸汽压",
+      "22": "分子量",
+      "23": "流通能力Cv",
+      "24": "阀体开度",
+      "25": "噪声等级",
+      "28": "额定Cv/特性",
+      "31": "阀盖类型",
+      "37": "阀杆行程",
+      "63": "执行器电源",
+      "64": "执行器功率",
+      "69": "限位开关类型数量"
+    }
+  },
+  "defaults": {
+    "F": 1
+  },
+  "value_transform": {
+    "46": "failure_pos"
+  },
+  "note": "由 仪表数据表_开关球阀.json 与 仪表数据表_开关球阀_81项.json 合并而来：两份版式的列位、序号完全一致，只是中英文字段名书写顺序不同，合并时同一项的两条 pat 用 | 连起来，两边独有的项保留。",
+  "extra_columns": [
+    {
+      "title": "阀盖类型",
+      "seq": 31,
+      "after": "AL",
+      "label": "阀盖类型"
+    },
+    {
+      "title": "阀盖材质",
+      "seq": 32,
+      "after": "AL",
+      "label": "阀盖材质"
+    },
+    {
+      "title": "阀芯类型",
+      "seq": 35,
+      "after": "AL",
+      "label": "阀芯类型"
+    },
+    {
+      "title": "阀杆行程",
+      "seq": 37,
+      "after": "AL",
+      "label": "阀杆行程"
+    },
+    {
+      "title": "阀芯尺寸",
+      "seq": 27,
+      "src_col": 5,
+      "after": "D",
+      "label": "阀芯尺寸"
+    },
+    {
+      "title": "流量特性",
+      "seq": 28,
+      "src_col": 5,
+      "after": "AG",
+      "label": "流量特性"
+    },
+    {
+      "title": "功率",
+      "label": "功率",
+      "seq": 65,
+      "src_col": 11,
+      "after": "CG"
+    }
+  ]
+}

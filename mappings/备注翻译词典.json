@@ -1,0 +1,59 @@
+{
+  "_说明": "备注翻译词典：templates 用 {n} 占位数字，phrases 按长度从长到短替换。遇到没翻的英文，把原句加到 phrases 里即可（下次运行生效）。",
+  "templates": [
+    {
+      "en": "Maximum Stroke Time to Close: {n} seconds",
+      "zh": "最大关闭时间：{n} 秒"
+    },
+    {
+      "en": "Maximum Stroke Time to Open: {n} seconds",
+      "zh": "最大开启时间：{n} 秒"
+    },
+    {
+      "en": "Maximum Stroke Time to Close: {n} second",
+      "zh": "最大关闭时间：{n} 秒"
+    },
+    {
+      "en": "Maximum Stroke Time to Open: {n} second",
+      "zh": "最大开启时间：{n} 秒"
+    }
+  ],
+  "phrases": [
+    {
+      "en": "The solenoid valve shall be mounted and tubed by the control valve vendor. The solenoid valve size and type, the tubing size, the actuator air connection size, and the air/filter regulator capacity shall be determined by the control valve vendor to meet the maximum stroking time requirements specified for the control valve",
+      "zh": "电磁阀应由阀门供货商负责安装并配管；电磁阀的规格与型式、配管尺寸、执行机构气源接口尺寸以及过滤减压阀容量，均应由阀门供货商按控制阀规定的最大动作时间要求确定"
+    },
+    {
+      "en": "The solenoid valve shall be mounted and tubed by the control valve vendor",
+      "zh": "电磁阀应由阀门供货商负责安装并配管"
+    },
+    {
+      "en": "The solenoid valve size and type, the tubing size, the actuator air connection size, and the air/filter regulator capacity shall be determined by the control valve vendor to meet the maximum stroking time requirements specified for the control valve",
+      "zh": "电磁阀的规格与型式、配管尺寸、执行机构气源接口尺寸以及过滤减压阀容量，均应由阀门供货商按控制阀规定的最大动作时间要求确定"
+    },
+    {
+      "en": "Line size valve with body purge connection",
+      "zh": "阀门通径与管道一致，并带阀体吹扫接口"
+    },
+    {
+      "en": "Maximum Stroke Time to Close",
+      "zh": "最大关闭时间"
+    },
+    {
+      "en": "Maximum Stroke Time to Open",
+      "zh": "最大开启时间"
+    },
+    {
+      "en": "Extension Bonnet",
+      "zh": "加长阀盖"
+    },
+    {
+      "en": "seconds",
+      "zh": "秒"
+    },
+    {
+      "en": "second",
+      "zh": "秒"
+    }
+  ]
+}

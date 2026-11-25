@@ -1,0 +1,399 @@
+{
+  "id": "spec_onoff_41",
+  "name": "仪表规格书（开关阀）41项双栏版",
+  "valve_type": [
+    "球阀",
+    "闸阀",
+    "截止阀",
+    "蝶阀",
+    "旋塞阀",
+    "调节阀",
+    "切断阀",
+    "开关阀"
+  ],
+  "detect": {
+    "must_any": [
+      "开关阀规格书",
+      "仪表规格书（开关阀）",
+      "Tag.No"
+    ],
+    "score_words": [
+      "Actuatur Type",
+      "Solenoid",
+      "Limit Switch",
+      "开关阀规格书",
+      "ON-Off",
+      "Oper. Pressure",
+      "Port Size"
+    ],
+    "min_score": 2
+  },
+  "struct": {
+    "ncols": [
+      8,
+      9
+    ],
+    "valves_per_page": 2,
+    "seq_col": 1
+  },
+  "parse": {
+    "parse_mode": "pdf_inline",
+    "valves_per_page": 2,
+    "col_map_by_ncols": {
+      "9": {
+        "seq": 1,
+        "name": 2,
+        "name2": 3,
+        "val": 4,
+        "val2": 6,
+        "val_r": 7,
+        "val2_r": 8
+      },
+      "8": {
+        "seq": 1,
+        "name": 2,
+        "name2": 3,
+        "val": 4,
+        "val2": 5,
+        "val_r": 6,
+        "val2_r": 7
+      }
+    },
+    "overrides": [
+      {
+        "seq": 11,
+        "col": 4
+      },
+      {
+        "seq": 11,
+        "col": 6,
+        "sub": true
+      },
+      {
+        "seq": 12,
+        "col": 4
+      },
+      {
+        "seq": 12,
+        "col": 6,
+        "sub": true
+      }
+    ]
+  },
+  "fields": [
+    {
+      "seq": 2,
+      "to": "B",
+      "label": "位号",
+      "pat": "Tag\\.No\\. 位号"
+    },
+    {
+      "seq": 3,
+      "to": "G",
+      "label": "用途",
+      "pat": "Service 用途"
+    },
+    {
+      "seq": 5,
+      "to": "AA",
+      "label": "管道材质",
+      "pat": "Line Material 管道材质"
+    },
+    {
+      "seq": 6,
+      "to": "W",
+      "label": "管线号",
+      "pat": "Line No\\. 管道号"
+    },
+    {
+      "seq": 7,
+      "to": "H",
+      "label": "介质名称",
+      "pat": "Fluid Name 介质名称"
+    },
+    {
+      "seq": 8,
+      "to": "S",
+      "label": "介质状态",
+      "pat": "Fluid State 介质状态"
+    },
+    {
+      "seq": 9,
+      "to": "I",
+      "label": "操作温度",
+      "pat": "\\( \\) Oper\\. Temper\\. 操作温度 ℃"
+    },
+    {
+      "seq": 10,
+      "to": "L",
+      "label": "操作压力",
+      "pat": "MPa\\(G\\) Oper\\. Pressure 操作压力"
+    },
+    {
+      "seq": 13,
+      "to": "N",
+      "label": "阀门形式",
+      "pat": "Type 形式"
+    },
+    {
+      "seq": 14,
+      "to": "E",
+      "label": "型号",
+      "pat": "Model No\\. 型号"
+    },
+    {
+      "seq": 15,
+      "to": "D",
+      "label": "口径",
+      "pat": "Port Size 阀口径"
+    },
+    {
+      "seq": 15,
+      "sub": 1,
+      "to": "C",
+      "label": "公称压力",
+      "pat": "NorPress\\. 公称压力"
+    },
+    {
+      "seq": 16,
+      "to": "AF",
+      "label": "连接形式",
+      "pat": "Conn\\. Type 连接形式"
+    },
+    {
+      "seq": 16,
+      "sub": 1,
+      "to": "AJ",
+      "label": "法兰标准",
+      "pat": "Fl\\. Std\\. 法兰标准"
+    },
+    {
+      "seq": 17,
+      "to": "AL",
+      "label": "阀体材质",
+      "pat": "Body Mat\\. 阀体材质"
+    },
+    {
+      "seq": 17,
+      "sub": 1,
+      "to": "AM",
+      "label": "阀芯材质",
+      "pat": "Ttim Mat\\. 阀芯材质"
+    },
+    {
+      "seq": 18,
+      "to": "AN",
+      "label": "阀杆材质",
+      "pat": "Stem Mat\\. 阀杆材质"
+    },
+    {
+      "seq": 18,
+      "sub": 1,
+      "to": "AV",
+      "label": "泄露等级(阀座)",
+      "pat": "Seat Mat\\. 阀座材质"
+    },
+    {
+      "seq": 19,
+      "to": "AP",
+      "label": "填料材质",
+      "pat": "Packing Mat\\. 填料材质"
+    },
+    {
+      "seq": 20,
+      "to": "AV",
+      "label": "泄露等级",
+      "pat": "Leakage Class 泄露等级"
+    },
+    {
+      "seq": 21,
+      "to": "BK",
+      "label": "执行机构形式",
+      "pat": "Actuatur Type 执行机构形式"
+    },
+    {
+      "seq": 22,
+      "to": "BM",
+      "label": "执行机构型号",
+      "pat": "Model No\\. 型号"
+    },
+    {
+      "seq": 23,
+      "to": "BR",
+      "label": "气源压力",
+      "pat": "Air Press 气源压力"
+    },
+    {
+      "seq": 24,
+      "to": "O",
+      "label": "行程时间",
+      "pat": "Travel Time 行程时间"
+    },
+    {
+      "seq": 25,
+      "to": "BP",
+      "label": "手轮装置",
+      "pat": "Handle Wheel 手轮装置"
+    },
+    {
+      "seq": 26,
+      "to": "BO",
+      "label": "故障时阀位",
+      "pat": "Possition Of Air Fail 气源故障时阀位"
+    },
+    {
+      "seq": 28,
+      "to": "CB",
+      "label": "电磁阀形式",
+      "pat": "Solenoid Type 电磁阀形式"
+    },
+    {
+      "seq": 29,
+      "to": "BY",
+      "label": "电磁阀型号",
+      "pat": "Solenoid Model 电磁阀型号"
+    },
+    {
+      "seq": 30,
+      "sub": 1,
+      "to": "CG",
+      "label": "电源",
+      "pat": "Power Supply 电源"
+    },
+    {
+      "seq": 31,
+      "to": "CI",
+      "label": "气接口",
+      "pat": "Pneu\\.Entry 气接口"
+    },
+    {
+      "seq": 31,
+      "sub": 1,
+      "to": "CH",
+      "label": "电接口",
+      "pat": "Elec\\.Entry 电接口"
+    },
+    {
+      "seq": 32,
+      "to": "CA",
+      "label": "防爆等级",
+      "pat": "Exp\\.Proof 防爆等级"
+    },
+    {
+      "seq": 32,
+      "sub": 1,
+      "to": "BZ",
+      "label": "防护等级",
+      "pat": "Pro\\.Class 防护等级"
+    },
+    {
+      "seq": 33,
+      "to": "CR",
+      "label": "限位开关型号",
+      "pat": "Limit Switch Model 限位开关型号"
+    },
+    {
+      "seq": 34,
+      "to": "CY",
+      "label": "限位开关形式",
+      "pat": "Limit Switch Type 限位开关形式"
+    },
+    {
+      "seq": 35,
+      "to": "CU",
+      "label": "现场指示",
+      "pat": "Field Indicator 现场指示"
+    },
+    {
+      "seq": 36,
+      "sub": 1,
+      "to": "DC",
+      "label": "限位开关电接口",
+      "pat": "Elec\\.Entry 电接口"
+    },
+    {
+      "seq": 37,
+      "to": "CT",
+      "label": "限位开关防爆",
+      "pat": "Exp\\.Proof 防爆等级"
+    },
+    {
+      "seq": 37,
+      "sub": 1,
+      "to": "CS",
+      "label": "限位开关防护",
+      "pat": "Pro\\.Class 防护等级"
+    },
+    {
+      "seq": 38,
+      "to": "DE",
+      "label": "空气过滤减压阀",
+      "pat": "Air Regulater 空气过滤减压阀"
+    },
+    {
+      "seq": 39,
+      "to": "EI",
+      "label": "气路管接头",
+      "pat": "& Tubing&Fittings 气路管 接头"
+    },
+    {
+      "seq": 40,
+      "to": "BJ",
+      "label": "安装支架材质",
+      "pat": "Mounting kits 安装支架材质"
+    },
+    {
+      "seq": 1,
+      "to": "R",
+      "label": "P&ID 号",
+      "pat": "No\\. 序号"
+    },
+    {
+      "seq": 27,
+      "to": "AI",
+      "label": "操作方式",
+      "pat": "Mounting 安装方式"
+    },
+    {
+      "seq": 30,
+      "to": "M",
+      "label": "阀体设计压力",
+      "pat": "Enc\\.Mat\\. 阀体材质"
+    },
+    {
+      "seq": 36,
+      "to": "CC",
+      "label": "材料",
+      "pat": "Enc\\.Mat\\. 外壳材质"
+    },
+    {
+      "seq": 41,
+      "to": "DL",
+      "label": "气控阀",
+      "pat": "1、阀门全套包含：气源三联件、隔爆型开、关阀位回讯器、低功耗隔爆ASCO电磁阀以及手轮等。"
+    }
+  ],
+  "remark": {
+    "to": "Q",
+    "include_seqs": [
+      4,
+      11,
+      12,
+      41
+    ],
+    "labels": {
+      "4": "管道外径内径",
+      "11": "操作密度",
+      "12": "动力粘度",
+      "41": "备注"
+    }
+  },
+  "defaults": {
+    "F": 1,
+    "CK": 2,
+    "CW": 2
+  },
+  "value_transform": {
+    "26": "failure_pos"
+  }
+}
